@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    <div class="row" >
+      {% for lecture in lectures %}
+        {% if lecture.lecid==1 %}
+          <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li>{{ lecture.cls }}</li>
+          </ol>
+          <h4>{{ lecture.cls }}</h4>
+        {% endif %}
+        <div class="list-group">
+          <a class="list-group-item" href="/class/{{ lecture.clsid }}/lec{{ lecture.lecid }}">
+            <p class="list-group-item-heading">{{ lecture.lecid }}. {{ lecture.lec }}</p>
+            <p class="list-group-item-text">{{ lecture.lecdesc }}</p>
+          </a>
+        {% else %}
+          <li><em>Unbelievable. No entries here so far</em>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

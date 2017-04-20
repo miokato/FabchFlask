@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+  <div class="container" >
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="text-center">2Dデザインを学ぼう</h4>
+          </div>
+          <div class="list-group">
+            {% for lecture in lectures %}
+              {% if lecture.category == '2Dデザイン' %}
+              <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+                <p class="list-group-item-heading">{{ lecture.cls }}</p>
+                <p class="list-group-item-text">{{ lecture.clsdesc }}</p>
+              </a>
+              {% endif %}
+            {% else %}
+              <li><em>Unbelievable. No entries here so far</em>
+            {% endfor %}
+          </div><!-- list -->
+        </div><!-- panel -->
+      </div><!-- col-md-6 -->
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="text-center">3Dモデリングを学ぼう</h4>
+          </div>
+          <div class="list-group">
+            {% for lecture in lectures %}
+              {% if lecture.category == '3Dモデリング' %}
+              <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+                <p class="list-group-item-heading">{{ lecture.cls }}</p>
+                <p class="list-group-item-text">{{ lecture.clsdesc }}</p>
+              </a>
+              {% endif %}
+            {% else %}
+              <li><em>Unbelievable. No entries here so far</em>
+            {% endfor %}
+          </div><!-- list -->
+        </div>
+      </div><!-- col-md-6 -->
+    </div><!-- row -->
+
+    <!-- 二段目 -->
+    <div class="row" >
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="text-center">電子工作を学ぼう</h4>
+          </div>
+          <div class="list-group">
+            {% for lecture in lectures %}
+              {% if lecture.category == '電子工作' %}
+              <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+                <p class="list-group-item-heading">{{ lecture.cls }}</p>
+                <p class="list-group-item-text">{{ lecture.clsdesc }}</p>
+              </a>
+              {% endif %}
+            {% else %}
+              <li><em>Unbelievable. No entries here so far</em>
+            {% endfor %}
+          </div><!-- list -->
+        </div><!-- panel -->
+      </div><!-- col-md-6 -->
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="text-center">プログラミングを学ぼう</h4>
+          </div>
+          <div class="list-group">
+            {% for lecture in lectures %}
+              {% if lecture.category == 'プログラミング' %}
+              <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+                <p class="list-group-item-heading">{{ lecture.cls }}</p>
+                <p class="list-group-item-text">{{ lecture.clsdesc }}</p>
+              </a>
+              {% endif %}
+            {% else %}
+              <li><em>Unbelievable. No entries here so far</em>
+            {% endfor %}
+          </div><!-- list -->
+        </div>
+      </div><!-- col-md-6 -->
+    </div><!-- row -->
+  </div><!-- container -->
+{% endblock %}

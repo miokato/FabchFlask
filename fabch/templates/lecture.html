@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="container">
+    <div class="row" >
+      {% for lecture in one_lecture %}
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/class/{{ lecture.clsid }}">{{ lecture.cls }}</a></li>
+        <li>{{ lecture.lec }}</li>
+      </ol>
+      <h3>{{ lecture.lecid }}. {{ lecture.lec }}</h3>
+
+      <div class="col-md-9">
+        <div class="iframe-wrapper">
+          <!-- データベースから動画のURLを引っ張る -->
+          <iframe src="https://player.vimeo.com/video/{{ lecture.movid }}" 
+            frameborder="0" 
+            webkitallowfullscreen 
+            mozallowfullscreen 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <!-- 番号を超えたときにトップ画面に戻る処理を書く -->
+        <div class="btn-group" role="group">
+          {% if lecture.lecid==1 %}
+          <a class="btn btn-default" disabled="disabled">
+            <span class="glyphicon glyphicon-menu-left"></span> 前へ
+          </a>
+          {% else %}
+          <a class="btn btn-default" href="/class/{{ lecture.clsid }}/lec{{ lecture.lecid - 1}}">
+            <span class="glyphicon glyphicon-menu-left"></span> 前へ
+          </a>
+          {% endif %}
+          {% if lecture.lecid==15 %}
+          <a class="btn btn-default" disabled="disabled">
+            <span class="glyphicon glyphicon-menu-right"></span> 次へ
+          </a>
+          {% else %}
+          <a class="btn btn-default" href="/class/{{ lecture.clsid }}/lec{{ lecture.lecid + 1}}">
+            <span class="glyphicon glyphicon-menu-right"></span> 次へ
+          </a>
+          {% endif %}
+        </div>
+      {% else %}
+        <li><em>Unbelievable. No entries here so far</em>
+      {% endfor %}
+      </div>
+
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          {% for lecture in lectures %}
+            {% if lecture.lecid == 1 %}
+              <div class="panel-heading">
+                {{ lecture.cls }}
+              </div>
+            {% endif %}
+            <div class="list-group">
+              <a class="list-group-item" href="/class/{{ lecture.clsid }}/lec{{ lecture.lecid }}">
+                <h6>{{lecture.lecid}}. {{ lecture.lec }}</h6>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}

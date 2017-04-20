@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Jumbotron Header -->
+<div class="container">
+  <div class="col-md-9">
+    <div class="jumbotron">
+      <h1>FAB.ch</h1>
+      <p>FAB.chはつくりながら学ぶオンライン動画学習のプラットフォームです。</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        FABニュース
+      </div>
+      <div class="panel-body">
+        ニュースだよ。
+      </div>
+    </div>
+  </div>
+    
+</div>
+
+
+<!-- 各カテゴリごとに２つずつクラスを表示 -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default" >
+        <div class="panel-heading text-center" id="home-panel-header">
+          <h3><i class="fa fa-code" aria-hidden="true"></i> つくりながら学ぶプログラミング</h3>
+        </div>
+        {% for lecture in lectures %}
+          {% if lecture.category=='プログラミング' %}
+            <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+              <h4>{{ lecture.cls }}</h4>
+              <p>{{ lecture.clsdesc }}</p>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center" id="home-panel-header">
+          <h3><i class="fa fa-microchip" aria-hidden="true"></i> つくりながら学ぶ電子工作</h3>
+        </div>
+        {% for lecture in lectures %}
+          {% if lecture.category=='電子工作' %}
+            <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+              <h4>{{ lecture.cls }}</h4>
+              <p>{{ lecture.clsdesc }}</p>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+    
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center" id="home-panel-header">
+          <h3><i class="fa fa-pencil" aria-hidden="true"></i> つくりながら学ぶ2Dデザイン</h3>
+        </div>
+        {% for lecture in lectures %}
+          {% if lecture.category=='2Dデザイン' %}
+            <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+              <h4>{{ lecture.cls }}</h4>
+              <p>{{ lecture.clsdesc }}</p>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center" id="home-panel-header">
+          <h3><i class="fa fa-cube" aria-hidden="true"></i> つくりながら学ぶ3Dモデリング</h3>
+        </div>
+        {% for lecture in lectures %}
+          {% if lecture.category=='3Dモデリング' %}
+            <a class="list-group-item" href="/class/{{ lecture.clsid }}">
+              <h4>{{ lecture.cls }}</h4>
+              <p>{{ lecture.clsdesc }}</p>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div><!-- row -->
+</div><!-- container -->
+
+
+{% endblock %}

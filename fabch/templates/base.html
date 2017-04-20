@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}">
+    <script src="https://use.fontawesome.com/25a1023d8e.js"></script>
+
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+
+
+  <!-- flash message -->
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+
+  <!-- navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">FAB.ch</a>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navbarEexample1">
+        <ul class="nav navbar-nav">
+          <li><a href="/">ホーム</a></li>
+          <li><a href="/class">講座一覧</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+        <!-- ログイン中かどうかで表示するナビゲーションバーを変える -->
+        {% if session.user_id %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('mypage') }}">マイページ</a></li>
+          <li><a href="{{ url_for('logout') }}">ログアウト</a></li>
+        </ul>
+        {% else %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('login') }}">ログイン</a></li>
+          <li><a class="btn btn-default" href="{{ url_for('signup') }}">サインアップ</a></li>
+        </ul>
+        {% endif %}
+      </div>
+    </div><!-- container -->
+  </nav>
+
+
+  {% block content %}
+  <!-- ここにメインのhtmlページが挿入される -->
+  {% endblock %}
+
+  <!-- footer -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      {% block footer %}
+        </p>&copy; Copyright 2016 by Global STEM Learning Association.</p>
+      {% endblock %}
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" 
+  integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" 
+  crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
