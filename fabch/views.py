@@ -8,12 +8,10 @@ from fabch import app, db
 from fabch.models import Lectures, User
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
-
 # PAY.JP 
 SECRET_KEY = os.environ['SECRET_KEY']
 PUBLIC_KEY = os.environ['PUBLIC_KEY']
 payjp.api_key = SECRET_KEY
-
 
 # setup login
 login_manager = LoginManager()
@@ -64,7 +62,6 @@ def recture(clsid,lecid):
 
 
 # signin, signup -------------------------------------------------
-
 # 個別ユーザーページ
 @app.route('/users/mypage/')
 @login_required
@@ -120,7 +117,6 @@ def logout():
 
 
 # PAY.JP -----------------------------------------------------
-
 @app.route('/pay', methods=['POST'])
 def pay():
 

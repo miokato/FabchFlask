@@ -5,6 +5,7 @@ from datetime import datetime
 
 from fabch import db
 
+
 class User(db.Model):
     __tablename__ = "users"
     id = db.Column('id', db.Integer, primary_key=True)
@@ -41,7 +42,6 @@ class User(db.Model):
         self.email = email
         self.registered_on = datetime.utcnow()
 
-
     def is_authenticated(self):
         return True
 
@@ -56,7 +56,6 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User%r>' % (self.username)
-
 
 
 class Lectures(db.Model):
@@ -76,6 +75,7 @@ class Lectures(db.Model):
     def __repr__(self):
         return '<Classes id={id} title={title!r}>'.format(
                 id=self.id, title=self.title)
-    
+
+
 def init():
     db.create_all()
